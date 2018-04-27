@@ -8,3 +8,5 @@ Advanced Topics Project 2018
 [Computerphile 2](https://www.youtube.com/watch?v=nybVFJVXbww)
 
 [Wikipedia Article on Elliptic Curves](https://en.wikipedia.org/wiki/Elliptic_curve)
+
+[Ars Technica Article on Elliptic Curve Cryptography](https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/)
