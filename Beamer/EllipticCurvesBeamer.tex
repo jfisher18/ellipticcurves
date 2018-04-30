@@ -3,6 +3,8 @@
 \usepackage{amssymb, amsmath, amsfonts, graphicx}
 \graphicspath{ {/} }
 
+\DeclareMathOperator{\lcm}{lcm}
+
 \title{Elliptic Curves}
 \author{Jake Fisher and Davis Lister}
 \date{May 1, 2018}
@@ -10,11 +12,27 @@
 	\begin{frame}
 		\titlepage
 	\end{frame}
+	
 	\begin{frame}{Pollard's p-1 Factoization}
 		\begin{itemize}
 			\item Let $B$ be a positive integer. The prime factorization of an integer $n=\prod p_{i}^{e_{i}}$. If $\forall i$ $p_{i}^{e_{i}} \leq B$, $n$ is $B$-power smooth.
 			\item We wish to find a nontrivial factor of a large positive integer $N$ using the Pollard p-1 method.
 			\item Let us choose a positive integer $B$. Suppose that there is a prime factor $p$ of $N$ such that $p-1$ is $B$-power smooth.
+			\item Let us choose $a > 1$ such that p does not divide a. Often we will choose $a=2$ for convenience.
+			\item By Fermat's Little Theorem $a^{p-1} \equiv 1 \mod p$.
+			\item Let $m = \lcm (1,2,3,\dotso,B)$. Since $p-1$ is $B$-power smooth, $p-1 \mid m \Longrightarrow p \mid \gcd (a^m-1,N) > 1$.
+			\item If $\gcd (a^m-1,N) < N$, then $\gcd (a^m-1,N)$ is a nontrivial factor of N.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Factoring Magic!}
+		\begin{itemize}
+			\item An example of integer factorization using Pollard's p-1 method.
+			\item Let $N=5917$ and let $B=5$. $m=\lcm (1,2,3,4,5)=60$.
+			\item Let $2^{60}-1=3416 \mod 5917$, and $\gcd (2^{60}-1, 5917)=\gcd (3416, 5917)=61$.
+			\item 61 is a factor of 5917!
+			\item But if $p-1$ and and $q-1$ (where $pq=N$) are not $B$-power smooth, Pollard p-1 does not work :(
+			\item The issue is that $\mathbb{Z}/p\mathbb{Z}$ has order p-1.
 		\end{itemize}
 	\end{frame}
 	
