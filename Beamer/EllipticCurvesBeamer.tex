@@ -40,15 +40,26 @@
 		\begin{itemize}
 			\item Now we will introduce Elliptic Curves as a group to help solve the integer factorization problem.
 			\item Elliptic Curves are a group under the $\oplus$ operation with the set $\lbrace \mathbb{Z}/p\mathbb{Z} \rbrace \cup \lbrace \mathcal{O} \rbrace$ where $\mathcal{O}$ is the point at infinity.
+			\item Let us define the discriminant $\Delta = -16(4a^3+27b^2)$. If $\Delta = 0$ the group law does not hold.
 			\item The $\oplus$ operation is defined geometrically on two points $(x_1,y_1)$ and $(x_2,y_2)$ thus: draw the secant line and find the third point where it intersects the curve $(x',y')$, which can include $\mathcal{O}$, finally find $(x',-y')$, the resulting point.
-			\item Under the $\oplus$ operation $\mathcal{O}$ is the identity.
-			\item nb. All computations are done over the set $\mathbb{Z}/p\mathbb{Z}$.
+			\item Under the $\oplus$ operation $\mathcal{O}$ is the identity and $(x,y)^{-1}=(x,-y)$.
+			\item All computations are done over the set $\mathbb{Z}/p\mathbb{Z}$ in cryptographic and integer factorization applications.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{More on the Discriminant}
+		\begin{itemize}
+			\item The condition we impose on the discriminant is the is motivated by the need to have a tangent line be well defined at all points on the curve $f(x,y)$. If the tangent line is not defined at a point $P_0=(x_0,y_0)$, then the curve is singular.
+			\item If the curve is singular, then $P_0 \oplus P_0$ is not well-defined, which breaks the group law.
+			\item Geometrically, a singularity is a cusp or self-intersection. At such points $\frac{\partial f}{\partial x}=\frac{\partial f}{\partial y}=0$.
+			\item First we will show that if $f$ is singular, $\Delta=0$.
+			\item Next we will show that if $\Delta=0$, $f$ is singular.
 		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}{Lenstra's Elliptic Curve Factorization}
 		\begin{itemize}
-			\item
+			\item 
 		\end{itemize}
 	\end{frame}
 \end{document}

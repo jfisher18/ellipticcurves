@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amssymb, amsmath, amsfonts, graphicx}
+\graphicspath{ {/} }
+\DeclareMathOperator{\for}{for}
+
+\begin{document}
+Davis Lister and Jacob Fisher
+
+\begin{abstract}
+We will show that the Elliptic Curve discriminant $\Delta=-16(4a^3+27b^2)=0$, if and only if the curve, $S$, is singular. For clarification, a singular curve is defined as having a point, the singular point, at which the derivative of the function is not well defined.
+\end{abstract}
+
+We wish to show that if $S$ is singular, then $\Delta=0$.
+Let $f(x,y)=y^2-(x^3+ax+b)$. Suppose $S$ has a singular point at $P_0=(x_0, y_0)$. Therefore,
+$$\frac{\partial f}{\partial x} y_0^2-(x_0^3+ax_0+b)=-3x_0^2-a=0 \Longrightarrow a=-3x_0^2,$$
+$$\frac{\partial f}{\partial y} y_0^2-(x_0^3+ax_0+b)=-2y_0=0 \Longrightarrow y_0=0.$$
+Since $y_0=0$, all singular points will be roots of $y^2=x^3+ax+b$. Observe,
+$$0=x_0^3-3x_0^3+b \Longrightarrow b=2x_0^3.$$
+Thus,
+$$\Delta=-16(4(-3x_0^2)^3+27(2x_0^3)^2)=0.$$
+
+\indent We wish to show that if $\Delta=0$, then $S$ is singular. First we will prove a lemma: if $\Delta=0$, $y=x^3+ax+b$ has a double root $x_0$. Note that
+$$-16(4a^3+27b^2)=0 \Longrightarrow b = \sqrt{\frac{-4a^3}{27}}.$$
+Furthermore, observe that given the above our equation becomes
+$$y=x^3+ax+\sqrt{\frac{-4a^3}{27}}.$$
+The roots of the above equation are
+$$x_1=\frac{a}{\sqrt{3}\sqrt[6]{-a^3}}-\frac{\sqrt[6]{-a^3}}{\sqrt{3}}, x_2=\frac{i\sqrt{3}\sqrt[3]{-a^3}+\sqrt[3]{-a^3}+i\sqrt{3}a-a}{2\sqrt{3}\sqrt[6]{-a^3}}, x_3=\frac{-i\sqrt{3}\sqrt[3]{-a^3}+\sqrt[3]{-a^3}-i\sqrt{3}a-a}{2\sqrt{3}\sqrt[6]{-a^3}}.$$
+Note that
+$$b=\sqrt{\frac{-4a^3}{27}} \Longrightarrow a<0 \for b \in \mathbb{R}.$$
+Therefore, our second two solutions become identical
+$$x_0=\frac{\sqrt[3]{-a^3}-a}{2\sqrt{3}\sqrt[6]{-a^3}}.$$
+Thus $y=x^3+ax+b$ has a double root $x_0$.
+By the lemma, we can deduce that one of the roots of $y=x^3+ax+b$ is a root of its derivative, $y'=3x^2+a$. Recall that $f(x,y)=y^2-(x^3+ax+b)$. Therefore,
+$$f{x_0,0}=0^2-(x_0^3+ax_0+b)=0,$$
+$$\frac{\partial f}{\partial x} (x_0,0)=-3x_0^2-a=0,$$
+$$\frac{\partial f}{\partial y} (x_0,0)=2(0)=0.$$
+Thus S is singular. Furthermore, we can conclude that $S$ is singular if and only if $\Delta=0$. 
+\end{document}
