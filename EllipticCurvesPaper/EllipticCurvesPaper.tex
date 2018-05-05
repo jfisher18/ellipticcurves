@@ -13,7 +13,7 @@ We will explore the properties of elliptic curves as a an abelian group, as well
 
 We will define an elliptic curve over a field $K$ as an equation of the form 
 $$y^2=x^3+ax+b,$$ 
-where $a,b \in K$ and $-16(4a^3+27b^2) \neq 0$. We may impose an abelian group structure on the set
+where $a,b \in K$ and the discriminant $-16(4a^3+27b^2) \neq 0$. We may impose an abelian group structure on the set
 $$E(K)=\lbrace(x,y) \in K \times K: y^2=x^3+ax+b\rbrace \cup \lbrace \mathcal{O} \rbrace$$
 of $K$-rational points on an elliptic curve $E$ over the field $K$. Often, we will implement the group structure on elliptic curves over fields of the form $\mathbb{Z}/p\mathbb{Z}$, though they are not limited to such fields. The group structure may also be imposed over $\mathbb{R}$, for instance.
 
@@ -26,11 +26,32 @@ of $K$-rational points on an elliptic curve $E$ over the field $K$. Often, we wi
 \item Let $x_3=\lambda^2-x_1-x_2$, $\nu=y_1-\lambda x_1$. Then, $R=(x_3,-\lambda x_3-\nu)$. Terminate and return $R$.
 \end{enumerate} 
 
-\indent We will examine the geometric analogue of the above operation.
+\indent It is clear that the identity element in the proposed group $(E(K),+)$ is $\mathcal{O}$, by item one of the above definition. Additionally, item two implies that for some $P \in E(K)$, where $P=(x,y)$, $P^{-1}=(x,-y)$, since $P+P^{-1}=\mathcal{O}$. Furthermore, the definition implies that the group is abelian since at each step one may substitute $P_1$ for $P_1$ while leaving $P_1+P_2=R$ unchanged. In order to prove that the group $(E(K),+)$ is closed, we will interpret the $+$ operation geometrically.
 
-\indent We wish to show that the group has an identity element, inverses and is closed.
+\indent The group operation $+$ can be interpreted as intersecting the secant line drawn between two points $P_1=(x_1,y_1)$ and $P_2=(x_2,y_2)$ where $P_1,P_2 \in E(K)$ and $x_1 \neq x_2$ with the curve $S$, which is given by the equation $y^2=x^3+ax=b$. In the case that $x_1=x_2$, the resulting line will either be the line tangent to $S$ at $x_1$, or it will be the vertical secant line connecting $(x_1,y_1)$ and $(x_2,y_2)$. We will address the first case later on. In the second case, the secant line will intersect $S$ at $\mathcal{O} \in E(K)$.
 
-\indent We wish to show that if $S$ is singular, then $\Delta=0$.
+\indent Let $L$ be the line drawn between $P_1,P_2$ where $P_1,P_2$ are on $S$. $L$ is given by the equation
+$$y=y_1+(x-x_1)\lambda.$$
+Substituting the equation for $L$ into the equation for $S$ we obtain
+$$(y_1+(x-x_1)\lambda)^2=x^3+ax+b.$$
+By simplifying we arrive at
+$$x^3-\lambda^2 x^2+2\lambda x_1x-2y_1x+ax-y_1^2+2y_1x_1+b=0.$$
+For $A,B\in\mathbb{R}$, the above equation can be written as
+$$x^3-\lambda^2 x^2+Ax+B=0.$$
+Since $P_1,P_2 \in L \cap S$, the polynomial above will have $x_1$ and $x_2$ as solutions. By the fundamental theorem of algebra
+$$0=x^3-\lambda^2 x^2+Ax+B=(x-x_1)(x-x_2)(x-x_3).$$
+By expanding the factored form of the polynomial we obtain
+$$0=(x-x_1)(x-x_2)(x-x_3)=x^3-(x_1+x_2+x_3)x^2+(x_1x_2-x_1x_3-x_2x_3)x+x_1x_2x_3.$$
+Therefore, we can deduce that
+$$x_3=\lambda^2-x_1-x_2.$$
+From the equation for L, we obtain that
+$$y_3=y_1+(x_3-x_1)\lambda=\lambda x_3+\nu$$
+where $\nu=y_1-\lambda x_1$. In the case that $P_1=P_2$, $\lambda=\frac{3x_1^2+a}{2y_1}$. As such, $L$ will intersect $S$ at two points and the polynomial $(x-x_1)(x-x_2)(x-x_3)=0$ will have a double root. However, the group structure will still be maintained since the above proof does not rely on the precise value of  $\lambda$, only the structure of the equation for $S$. Therefore, $(E(K),+)$ is closed.
+
+\indent We return to address the requirement that the discriminant, $\Delta=-16(4a^3+27b^2) \neq 0$. We we wish to show that $\Delta=0$ if and only if an elliptic curve $S$ is singular. A singular curve poses problems for a group structure because at the singular point the derivative is not well defined, which would cause the addition the singular point to itself to not be well defined. For any polynomial $f(x_1,x_2,\dotsc)$ at the singular point $P_0$
+$$\frac{\partial f}{\partial x_1}(P_0)=\frac{\partial f}{\partial x_2}(P_0)=\cdots=0.$$
+
+\indent First, we wish to show that if $S$ is singular, then $\Delta=0$.
 Let $f(x,y)=y^2-(x^3+ax+b)$. Suppose $S$ has a singular point at $P_0=(x_0, y_0)$. Therefore,
 $$\frac{\partial f}{\partial x} y_0^2-(x_0^3+ax_0+b)=-3x_0^2-a=0 \Longrightarrow a=-3x_0^2,$$
 $$\frac{\partial f}{\partial y} y_0^2-(x_0^3+ax_0+b)=-2y_0=0 \Longrightarrow y_0=0.$$
