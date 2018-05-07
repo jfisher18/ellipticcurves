@@ -2,7 +2,9 @@
 \usepackage[margin=1.0in]{geometry}
 \usepackage{amssymb, amsmath, amsfonts, graphicx}
 \graphicspath{ {/} }
+
 \DeclareMathOperator{\for}{for}
+\DeclareMathOperator{\lcm}{lcm}
 
 \begin{document}
 Davis Lister and Jacob Fisher
@@ -76,4 +78,13 @@ $$f(x_0,0)=0^2-(x_0^3+ax_0+b)=0,$$
 $$\frac{\partial f}{\partial x} (x_0,0)=-3x_0^2-a=0,$$
 $$\frac{\partial f}{\partial y} (x_0,0)=2(0)=0.$$
 Thus S is singular. Furthermore, we can conclude that $S$ is singular if and only if $\Delta=0$. 
+
+\indent An important application of the group $(E(K),+)$ is integer factorization. We will begin by discussing Pollard's $p-1$ algorithm for integer factorization as a preface to our discussion of Lenstra elliptic curve factorization.
+
+\indent We will define the concept of being power smooth. Let $B$ be a positive integer. The prime factorization of an integer $n=\prod p_{i}^{e_{i}}$. If $\forall i$ $p_{i}^{e_{i}} \leq B$, $n$ is $B$-power smooth. Now we will attempt to find a nontrivial factor of a large positive integer $N$ using the Pollard p-1 method. Let us choose a positive integer $B$. Suppose that there is a prime factor $p$ of $N$ such that $p-1$ is $B$-power smooth. Let us choose $a > 1$ such that p does not divide $a$. Often we will choose $a=2$ for convenience. By Fermat's Little Theorem 
+$$a^{p-1} \equiv 1 \mod p.$$
+Let $m = \lcm (1,2,3,\dotso,B)$. Since $p-1$ is $B$-power smooth, 
+$$p-1 \mid m \Longrightarrow p \mid \gcd (a^m-1,N) > 1.$$
+
+\indent We will now explore an example of integer factorization with Pollard's $p-1$ algorithm.
 \end{document}
