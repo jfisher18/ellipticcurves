@@ -10,3 +10,5 @@ Advanced Topics Project 2018
 [Wikipedia Article on Elliptic Curves](https://en.wikipedia.org/wiki/Elliptic_curve)
 
 [Ars Technica Article on Elliptic Curve Cryptography](https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/)
+
+[Original Lenstra Paper](http://www.jstor.org/stable/pdf/1971363.pdf)
