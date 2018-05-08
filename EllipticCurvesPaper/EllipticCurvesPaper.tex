@@ -20,7 +20,6 @@ $$E(K)=\lbrace(x,y) \in K \times K: y^2=x^3+ax+b\rbrace \cup \lbrace \mathcal{O}
 of $K$-rational points on an elliptic curve $E$ over the field $K$. Often, we will implement the group structure on elliptic curves over fields of the form $\mathbb{Z}/p\mathbb{Z}$, though they are not limited to such fields. The group structure may also be imposed over $\mathbb{R}$, for instance.
 
 \indent Let $E$ be an elliptic curve over a field $K$, with the equation $y^2=x^3+ax+b$. We begin by defining the binary operation $+$ on E(K) such that, for $P_1,P_2 \in E(K)$, $P_1 + P_2=R \in E(K)$.  We will define the $+$ operation as follows:
-
 \begin{enumerate}
 \item If $P_1=\mathcal{O}$ set $R=P_2$ or if $P_2=\mathcal{O}$ set $R=P_1$, terminate and return $R$. Otherwise write $P_1=(x_1,y_1)$ and $P_2=(x_2,y_2)$.
 \item If $x_1=x_2$ and $y_1=-y_2$, set $R=\mathcal{O}$, terminate and return $R$.
@@ -67,7 +66,7 @@ $$-16(4a^3+27b^2)=0 \Longrightarrow b = \sqrt{\frac{-4a^3}{27}}.$$
 Furthermore, observe that given the above our equation becomes
 $$y=x^3+ax+\sqrt{\frac{-4a^3}{27}}.$$
 The roots of the above equation are
-$$x_1=\frac{a}{\sqrt{3}\sqrt[6]{-wa^3}}-\frac{\sqrt[6]{-a^3}}{\sqrt{3}}, x_2=\frac{i\sqrt{3}\sqrt[3]{-a^3}+\sqrt[3]{-a^3}+i\sqrt{3}a-a}{2\sqrt{3}\sqrt[6]{-a^3}}, x_3=\frac{-i\sqrt{3}\sqrt[3]{-a^3}+\sqrt[3]{-a^3}-i\sqrt{3}a-a}{2\sqrt{3}\sqrt[6]{-a^3}}.$$
+$$x_1=\frac{a}{\sqrt{3}\sqrt[6]{-a^3}}-\frac{\sqrt[6]{-a^3}}{\sqrt{3}}, x_2=\frac{i\sqrt{3}\sqrt[3]{-a^3}+\sqrt[3]{-a^3}+i\sqrt{3}a-a}{2\sqrt{3}\sqrt[6]{-a^3}}, x_3=\frac{-i\sqrt{3}\sqrt[3]{-a^3}+\sqrt[3]{-a^3}-i\sqrt{3}a-a}{2\sqrt{3}\sqrt[6]{-a^3}}.$$
 Note that
 $$b=\sqrt{\frac{-4a^3}{27}} \Longrightarrow a<0 \for b \in \mathbb{R}.$$
 Therefore, our second two solutions become identical
@@ -81,10 +80,23 @@ Thus S is singular. Furthermore, we can conclude that $S$ is singular if and onl
 
 \indent An important application of the group $(E(K),+)$ is integer factorization. We will begin by discussing Pollard's $p-1$ algorithm for integer factorization as a preface to our discussion of Lenstra elliptic curve factorization.
 
-\indent We will define the concept of being power smooth. Let $B$ be a positive integer. The prime factorization of an integer $n=\prod p_{i}^{e_{i}}$. If $\forall i$ $p_{i}^{e_{i}} \leq B$, $n$ is $B$-power smooth. Now we will attempt to find a nontrivial factor of a large positive integer $N$ using the Pollard p-1 method. Let us choose a positive integer $B$. Suppose that there is a prime factor $p$ of $N$ such that $p-1$ is $B$-power smooth. Let us choose $a > 1$ such that p does not divide $a$. Often we will choose $a=2$ for convenience. By Fermat's Little Theorem 
+\indent We will define the concept of being power smooth. Let $B$ be a positive integer. The prime factorization of an integer $n=\prod p_{i}^{e_{i}}$. If $\forall i$ $p_{i}^{e_{i}} \leq B$, $n$ is $B$-power smooth. Now we will attempt to find a nontrivial factor of a large positive integer $N$ using the Pollard p-1 method. Let us choose a positive integer $B$. Suppose that there is a prime factor $p$ of $N$ such that $p-1$ is $B$-power smooth. Let us choose $a > 1$ such that p does not divide $a$. Often we will choose $a=2$ for convenience. By Fermat's Little Theorem
 $$a^{p-1} \equiv 1 \mod p.$$
 Let $m = \lcm (1,2,3,\dotso,B)$. Since $p-1$ is $B$-power smooth, 
 $$p-1 \mid m \Longrightarrow p \mid \gcd (a^m-1,N) > 1.$$
 
-\indent We will now explore an example of integer factorization with Pollard's $p-1$ algorithm.
+\indent We will now explore an example of integer factorization with Pollard's $p-1$ algorithm. Let $N=5917$ and let $B=5$. Therefore, 
+$$m=\lcm (1,2,3,4,5)=60.$$
+Note that $2^{60}-1=3416 \mod 5917$. Thus,
+$$\gcd (2^{60}-1, 5917)=\gcd (3416, 5917)=61.$$
+Therefore, 61 is a factor of 5917.
+
+\indent We will now define Lenstra's algorithm. Given a positive integer $N$ and a bound $B$, this algorithm attempts to find a nontrivial factor $p$ of $N$. We will define the algorithm with the following steps:
+\begin{enumerate}
+\item Compute $m=\lcm(1,2,\dotso,B)$. 
+\item Choose a random $a \in \mathbb{Z}/N\mathbb{Z}$ such that $4a^3+27 \in \mathbb{Z}/N\mathbb{Z}^*$. Thus, $P=(0,1)$ is a point on the elliptic curve $y^2=x^3+ax+14$ over $\mathbb{Z}/N\mathbb{Z}$.
+\item Attempt to compute $mP$ using the $+$ operation for the group $(E(K),+)$. If at some point we cannot compute a sum of points because $\gcd(x_1-x_2,N) \neq 1$ (where $2y$ is the denominator of the slope expression we compute in order to execute the $+$ operation), compute and return $\gcd(x_1-x_2,N)$ if $\gcd(x_1-x_2,N) \neq N$. If every $2y$ is coprime to $N$, then output, "Fail."
+
+\indent The advantage of the Lenstra method is that if the algorithm fails, we may choose a different elliptic curve and repeat the algorithm. In Pollard's $p-1$ we always work with the group $\mathbb{Z}/N\mathbb{Z}^*$, which has order p-1. However, in the Lenstra method we work with many different groups $E(\mathbb{Z}/N\mathbb{Z})$, which will have order $p+1\pm s$, for some nonnegative integer where $s<2\sqrt{p}$. Therefore, we will have more flexibility since the order of our group is not always fixed to $p-1$.
+\end{enumerate} 
 \end{document}
