@@ -12,3 +12,5 @@ Advanced Topics Project 2018
 [Ars Technica Article on Elliptic Curve Cryptography](https://arstechnica.com/information-technology/2013/10/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/)
 
 [Original Lenstra Paper](http://www.jstor.org/stable/pdf/1971363.pdf)
+
+[UW Lenstra Paper](https://sites.math.washington.edu/~morrow/336_17/2016papers/thomas.pdf)
