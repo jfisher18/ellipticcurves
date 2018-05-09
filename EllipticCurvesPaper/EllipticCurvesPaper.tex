@@ -10,7 +10,7 @@
 Davis Lister and Jacob Fisher
 
 \begin{abstract}
-We will explore the properties of elliptic curves as a an abelian group, as well as investigating some applications of the group to integer factorization problems and public-key cryptography.
+We will explore the properties of elliptic curves as an abelian group, as well as investigating some applications of the group to integer factorization problems and public-key cryptography.
 \end{abstract}
 
 We will define an elliptic curve over a field $K$ as an equation of the form 
@@ -95,8 +95,14 @@ Therefore, 61 is a factor of 5917.
 \begin{enumerate}
 \item Compute $m=\lcm(1,2,\dotso,B)$. 
 \item Choose a random $a \in \mathbb{Z}/N\mathbb{Z}$ such that $4a^3+27 \in \mathbb{Z}/N\mathbb{Z}^*$. Thus, $P=(0,1)$ is a point on the elliptic curve $y^2=x^3+ax+14$ over $\mathbb{Z}/N\mathbb{Z}$.
-\item Attempt to compute $mP$ using the $+$ operation for the group $(E(K),+)$. If at some point we cannot compute a sum of points because $\gcd(x_1-x_2,N) \neq 1$ (where $2y$ is the denominator of the slope expression we compute in order to execute the $+$ operation), compute and return $\gcd(x_1-x_2,N)$ if $\gcd(x_1-x_2,N) \neq N$. If every $2y$ is coprime to $N$, then output, "Fail."
+\item Attempt to compute $mP$ using the $+$ operation for the group $(E(K),+)$. If at some point we cannot compute a sum of points because $\gcd(x_1-x_2,N) \neq 1$ (where $2y$ is the denominator of the slope expression we compute in order to execute the $+$ operation), compute and return $\gcd(x_1-x_2,N)$ if $\gcd(x_1-x_2,N) \neq N$. If some point $kP=\mathcal{O} \for k \leq m$, terminate and output, "Fail." Additionally, if $mP$ can be computed using the $+$ operation, output, "Fail."
+\end{enumerate}
 
-\indent The advantage of the Lenstra method is that if the algorithm fails, we may choose a different elliptic curve and repeat the algorithm. In Pollard's $p-1$ we always work with the group $\mathbb{Z}/N\mathbb{Z}^*$, which has order p-1. However, in the Lenstra method we work with many different groups $E(\mathbb{Z}/N\mathbb{Z})$, which will have order $p+1\pm s$, for some nonnegative integer where $s<2\sqrt{p}$. Therefore, we will have more flexibility since the order of our group is not always fixed to $p-1$.
-\end{enumerate} 
+\indent The advantage of the Lenstra method is that if the algorithm fails, we may choose a different elliptic curve and repeat the algorithm. In Pollard's $p-1$ we always work with the group $\mathbb{Z}/N\mathbb{Z}^*$, which has order p-1. However, in the Lenstra method we work with many different groups $E(\mathbb{Z}/N\mathbb{Z})$, which will have order $p+1\pm s$, for some nonnegative integer where $s<2\sqrt{p}$ by Hasse's theorem. Therefore, we will have more flexibility since the order of our group is not always fixed to $p-1$.
+
+\indent Insert numerical example here.
+
+\indent Discuss cryptography.
+
+\indent Insert example.
 \end{document}
