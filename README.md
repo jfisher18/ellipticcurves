@@ -1,7 +1,7 @@
 # ellipticcurves
 Advanced Topics Project 2018
 ### Interesting links
-[Newton Reading](https://wstein.org/simuw06/ch6.pdf)
+[Newton Reading](https://wstein.org/simuw06/ch6.pdf) ([Full book](https://wstein.org/ent/ent.pdf))
 
 [Computerphile 1](https://www.youtube.com/watch?v=NF1pwjL9-DE)
 
