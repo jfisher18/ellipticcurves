@@ -99,11 +99,15 @@ def elliptic_curve_multiplication_finite(x1, y1, m, a, b, n):
     return elliptic_curve_addition_finite(x1, y1, x1, y1, a, b, n)
   else:
     next = elliptic_curve_multiplication_finite(x1, y1, m-1, a, b, n)
-    return elliptic_curve_addition_finite(int(next[0]), int(next[1]), x1, y1, a, b, n)
+    if next[0] == math.nan:
+      return x1, y1
+    else:
+      return elliptic_curve_addition_finite(int(next[0]), int(next[1]), x1, y1, a, b, n)
 
 
 def lenstra(n, b):
   m = lcm_list(b)
   a = random.randint(0, math.sqrt(n))
 
-print(elliptic_curve_addition_finite(5, 1, math.nan, math.nan, 2, 2, 17))
+#print(elliptic_curve_addition_finite(5, 1, math.nan, math.nan, 2, 2, 17))
+print(elliptic_curve_multiplication_finite(5, 1, 19, 2, 2, 17))
