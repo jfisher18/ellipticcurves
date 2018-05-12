@@ -41,7 +41,7 @@ def pollard(n,b,attempts):
       return d
   return 0
 
-def elliptic_curve_addition_R(x1, y1, x2, y2, a, b):
+def elliptic_curve_addition_R(x1, y1, x2, y2, a):
   slope = 0
   if math.isnan(y1):
     return y2
@@ -53,11 +53,11 @@ def elliptic_curve_addition_R(x1, y1, x2, y2, a, b):
     slope = (3 * pow(x1,2) + a) / (2 * y1)
   else:
     slope = (y1 - y2) / (x1 - x2)
-  x3 = pow(slope,2) - x1 - x2
+  x3 = pow(slope, 2) - x1 - x2
   y3 = -slope * x3 - y1 + slope * x1
   return x3, y3
 
-def elliptic_curve_addition_finite(x1, y1, x2, y2, a, b, n):
+def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
   slope = 0
   if math.isnan(x1):
     return x2, y2
@@ -73,7 +73,7 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, b, n):
     num = 3 * pow(x1, 2) + a
     denom = 2 * y1
     if math.gcd(denom, n) != 1:
-        print("The chosen elliptic curve is not a group mod n.")
+        raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + 'may be a nontrivial factor of n.')
     else:
         base = num % n
         while math.gcd(base, denom) == 1:
@@ -82,34 +82,46 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, b, n):
   else:
     num = (y1 - y2)
     denom = (x1 - x2)
-    while num < 0:
-      num += n
-    while denom < 0:
-      denom += n
-    if float(int(num / denom)) != num / denom:
-      base = num % n
-      while float(int(base / denom)) != base / denom:
-        base += n
-      slope = (base / denom) % n
+    if math.gcd(denom, n) != 1:
+      raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + 'may be a nontrivial factor of n.')
     else:
-      slope = (num / denom) % n
+      while num < 0:
+        num += n
+      while denom < 0:
+        denom += n
+      if float(int(num / denom)) != num / denom:
+        base = num % n
+        while float(int(base / denom)) != base / denom:
+          base += n
+        slope = (base / denom) % n
+      else:
+        slope = (num / denom) % n
   x3 = (pow(slope, 2) - x1 - x2) % n
   y3 = (-slope * x3 - y1 + slope * x1) % n
   return x3, y3
 
-#issue returning to original point under O
-def elliptic_curve_multiplication_finite(x1, y1, m, a, b, n):
+def elliptic_curve_multiplication_finite(x1, y1, m, a, n):
   if m == 2:
-    return elliptic_curve_addition_finite(x1, y1, x1, y1, a, b, n)
+    return elliptic_curve_addition_finite(x1, y1, x1, y1, a, n)
   else:
-    next = elliptic_curve_multiplication_finite(x1, y1, m-1, a, b, n)
+    next = elliptic_curve_multiplication_finite(x1, y1, m-1, a, n)
     if next[0] == math.nan:
+      print(m-1)
       return x1, y1
     else:
-      return elliptic_curve_addition_finite(next[0], next[1], x1, y1, a, b, n)
+      print(m - 1)
+      return elliptic_curve_addition_finite(next[0], next[1], x1, y1, a, n)
 
 
 def lenstra(n, b):
   m = lcm_list(b)
-  a = random.randint(0, math.sqrt(n))
+  print('m:' + str(m))
+  a = random.randint(0, math.ceil(math.sqrt(n)))
+  while 4 * pow(a, 3) + 27 == 0:
+    random.randint(0, math.ceil(math.sqrt(n)))
+  print('a:' + str(a))
+  elliptic_curve_multiplication_finite(0, 1, m, a, n)
+  return 'Fail'
 
+
+lenstra(5959, 20)
