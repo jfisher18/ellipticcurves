@@ -63,7 +63,11 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, b, n):
     return x2, y2
   elif math.isnan(x2):
     return x1, y1
-  elif x1 == x2 and (y1 + y2) % n == 0:
+  x1 = int(x1)
+  y1 = int(y1)
+  x2 = int(x2)
+  y2 = int(y2)
+  if x1 == x2 and (y1 + y2) % n == 0:
     return math.nan, math.nan
   elif x1 == x2 and y1 == y2:
     num = 3 * pow(x1, 2) + a
@@ -102,12 +106,10 @@ def elliptic_curve_multiplication_finite(x1, y1, m, a, b, n):
     if next[0] == math.nan:
       return x1, y1
     else:
-      return elliptic_curve_addition_finite(int(next[0]), int(next[1]), x1, y1, a, b, n)
+      return elliptic_curve_addition_finite(next[0], next[1], x1, y1, a, b, n)
 
 
 def lenstra(n, b):
   m = lcm_list(b)
   a = random.randint(0, math.sqrt(n))
 
-#print(elliptic_curve_addition_finite(5, 1, math.nan, math.nan, 2, 2, 17))
-print(elliptic_curve_multiplication_finite(5, 1, 19, 2, 2, 17))
