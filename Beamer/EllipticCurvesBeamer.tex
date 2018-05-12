@@ -4,6 +4,7 @@
 \graphicspath{ {/}{images/}}
 
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\for}{for}
 
 \title{Elliptic Curves}
 \author{Jake Fisher and Davis Lister}
@@ -15,17 +16,21 @@
 	
 		\begin{frame}{Group Law for Elliptic Curves}
 		\begin{itemize}
-			\item Elliptic Curves are a group under the $+$ operation with the set $\lbrace K \times K: y^2=x^3+ax+b \rbrace \cup \lbrace \mathcal{O} \rbrace$ where $\mathcal{O}$ is the point at infinity and $K$ is a field. We notate the set of elliptic curves over a field $K$, $(E(K))$.
+			\item Elliptic Curves are a group under the $+$ operation with the set $\lbrace K \times K: y^2=x^3+ax+b \rbrace \cup \lbrace \mathcal{O} \rbrace$ where $\mathcal{O}$ is the point at infinity and $K$ is a field. We notate the set represented by an elliptic curve $E$ over a field $K$, $E(K)$.
 			\item Let us define the discriminant $\Delta = -16(4a^3+27b^2)$. If $\Delta = 0$ the group law does not hold.
-			\item The $+$ operation is defined geometrically on two points $(x_1,y_1)$ and $(x_2,y_2)$ thus: draw the secant line and find the third point where it intersects the curve $(x',y')$, which can include $\mathcal{O}$, finally find $(x',-y')$, the resulting point.
+			\item The $+$ operation is defined geometrically on two points $P_1=(x_1,y_1)$ and $P_2=(x_2,y_2)$ thus: draw the secant line and find the third point where it intersects the curve $(x',y')$, which can include $\mathcal{O}$, finally find $(x',-y')$, the resulting point.
 			\item Under the $+$ operation $\mathcal{O}$ is the identity and $(x,y)^{-1}=(x,-y)$.
-			\item All computations are done over the set $\mathbb{Z}/n\mathbb{Z}$ in cryptographic and integer factorization applications.
+			\item The $+$ operation is closed since each secant line will intersect the curve at exactly one other point. The definition of the operation does not discriminate between $P_1$ and $P_2.$ Therefore, $(E(K),+)$ is an abelian group.
 		\end{itemize}
 	\end{frame}
 	
-		\begin{frame}{More on the Discriminant}
+	\begin{frame}{A Visualization of the $+$ Operation over E(K)}
+		\includegraphics[scale=.3]{GeometricGroup.png}
+	\end{frame} 
+	
+	\begin{frame}{More on the Discriminant}
 		\begin{itemize}
-			\item The condition we impose on the discriminant is the is motivated by the need to have a tangent line be well defined at all points on the curve $S\in(E(K))$. If the tangent line is not defined at a point $P_0=(x_0,y_0)$, then $S$ is singular.
+			\item The condition we impose on the discriminant is the is motivated by the need to have a tangent line be well defined at all points on the elliptic curve $S$. If the tangent line is not defined at a point $P_0=(x_0,y_0)$, then $S$ is singular.
 			\item If S is singular, then $P_0+P_0$ is not well-defined, which breaks the group law.
 			\item Geometrically, a singularity is a cusp or self-intersection.
 			\newline \includegraphics[scale=.3]{SingularCurve.png}
@@ -63,9 +68,37 @@
 		\end{itemize}
 	\end{frame}
 	
+	\begin{frame}{Elliptic Curves over Finite Fields}
+		\includegraphics[scale=.4]{EllipticCurveFiniteField.png}
+	\end{frame}
+	
 	\begin{frame}{Lenstra's Elliptic Curve Factorization}
 		\begin{itemize}
-			\item 
+			\item Compute $m=\lcm(1,2,\dotso,B)$. 
+			\item Choose a random $a \in \mathbb{Z}/N\mathbb{Z}$ such that $4a^3+27 \in \mathbb{Z}/N\mathbb{Z}^*$. Thus, $P=(0,1)$ is a point on the elliptic curve $y^2=x^3+ax+14$ over $\mathbb{Z}/N\mathbb{Z}$.
+			\item Attempt to compute $mP$ using the $+$ operation for the group $(E(K),+)$. If at some point we cannot compute a sum of points because $\gcd(x_1-x_2,N) \neq 1$ (where $x_1-x_2$ is the denominator of the slope expression we compute in order to execute the $+$ operation), compute and return $\gcd(x_1-x_2,N)$ if $\gcd(x_1-x_2,N) \neq N$. If some point $kP=\mathcal{O} \for k \leq m$, terminate and output, "Fail." Additionally, if $mP$ can be computed using the $+$ operation, output, "Fail."
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Advantages of the Lenstra Method}
+		\begin{itemize}
+			\item The advantage of the Lenstra method is that if the algorithm fails, we may choose a different elliptic curve and repeat the algorithm.
+			\item We have more flexibility with our groups since we work with many different groups $E(\mathbb{Z}/N\mathbb{Z})$, which will have order $p+1\pm s$.
+			\item In Pollard $p-1$ we work with $\mathbb{Z}/N\mathbb{Z}^*$, which always has order $p-1$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{An Example of the Lenstra Method}
+	
+	\end{frame}
+	
+	\begin{frame}{Elliptic Curve Cryptography}
+		\begin{itemize}
+			\item The Diffie-Hellman key exchange can be implemented on an Elliptic Curve.
+			\item Alice and Bob publicly agree on a prime $p$ and an elliptic curve $S$ over $\mathbb{Z}/p\mathbb{Z}$. They then agree on a point $P \in S(\mathbb{Z}/p\mathbb{Z})$
+			\item Alice chooses a private key $m$ and sends Bob $mP$.
+			\item Bob chooses a private key $n$ and sends Alice $nP$.
+			\item Alice and Bob both compute $mnP$, their shared secret key.
 		\end{itemize}
 	\end{frame}
 \end{document}
