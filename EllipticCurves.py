@@ -1,5 +1,7 @@
 import math
+import random
 
+#issue with gcd function gcd(15, 4) returns 3
 def gcd(a,b):
   a1=max(a,b)
   b1=min(a,b)
@@ -63,10 +65,33 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, b, n):
   elif x1 == x2 and y1 == -y2:
     return math.nan
   elif x1 == x2 and y1 == y2:
-    slope = (3 * pow(x1, 2) + a) / (2 * y1) % n
+    num = 3 * pow(x1, 2) + a
+    denom = 2 * y1
+    if gcd(denom, n) != 1:
+        print("The chosen elliptic curve is not a group mod n.")
+    else:
+        base = num % n
+        while gcd(base, denom) == 1:
+            base += n
+        slope = base / denom
   else:
-    slope = (y1 - y2) / (x1 - x2) % n
-  x3 = pow(slope, 2) - x1 - x2 % n
-  y3 = -slope * x3 - y1 + slope * x1 % n
+    num = (y1 - y2)
+    denom = (x1 - x2)
+    slope = (num / denom) % n
+  x3 = (pow(slope, 2) - x1 - x2) % n
+  y3 = (-slope * x3 - y1 + slope * x1) % n
   return x3, y3
 
+def elliptic_curve_multiplication_finite(x1, y1, m, a, b, n):
+  if m == 2:
+    return elliptic_curve_addition_finite(x1, y1, x1, y1, a, b, n)
+  else:
+    next = elliptic_curve_multiplication_finite(x1, y1, m-1, a, b, n)
+    return elliptic_curve_addition_finite(next[0], next[1], x1, y1, a, b, n)
+
+
+def lenstra(n, b):
+  m = lcm_list(b)
+  a = random.randint(0, math.sqrt(n))
+
+print(elliptic_curve_addition_finite(9, 16, 5, 1, 2, 2, 17))
