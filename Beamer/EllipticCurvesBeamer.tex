@@ -74,6 +74,7 @@
 	
 	\begin{frame}{Lenstra's Elliptic Curve Factorization}
 		\begin{itemize}
+			\item Choose $N, B \in \mathbb{Z}^+$.
 			\item Compute $m=\lcm(1,2,\dotso,B)$. 
 			\item Choose a random $a \in \mathbb{Z}/N\mathbb{Z}$ such that $4a^3+27 \in \mathbb{Z}/N\mathbb{Z}^*$. Thus, $P=(0,1)$ is a point on the elliptic curve $y^2=x^3+ax+14$ over $\mathbb{Z}/N\mathbb{Z}$.
 			\item Attempt to compute $mP$ using the $+$ operation for the group $(E(K),+)$. If at some point we cannot compute a sum of points because $\gcd(x_1-x_2,N) \neq 1$ (where $x_1-x_2$ is the denominator of the slope expression we compute in order to execute the $+$ operation), compute and return $\gcd(x_1-x_2,N)$ if $\gcd(x_1-x_2,N) \neq N$. If some point $kP=\mathcal{O} \for k \leq m$, terminate and output, "Fail." Additionally, if $mP$ can be computed using the $+$ operation, output, "Fail."
@@ -89,7 +90,15 @@
 	\end{frame}
 	
 	\begin{frame}{An Example of the Lenstra Method}
-	
+		\begin{itemize}
+			\item Let us choose $N=5959$ and $B=8$.
+			\item Therefore, $m=840$ and our random $a=6$, where $a \in \mathbb{Z} \mid 4a^3+27 \neq 0$.
+			\item Note that $P=(0,1)$ is on the elliptic curve $y^2=x^3+ax+1$ over $\mathbb{Z}/N\mathbb{Z}$. We now attempt to compute $mP$.
+			\item Observe that $60P=(649,2654)$. Therefore $\lambda\equiv\frac{2653}{649} \mod 5959$. Since $649 \not\equiv 0 \mod 5959$, which would indicate that the next point were $\mathcal{O}$, we encounter a contradiction to the group law.
+			\item Note that $(649,2654)^{-1}=(649,-2654)$.
+			\item Therefore, $p=\gcd(649,5959)$ is a nontrivial factor of $N$, if $1<p<N$.
+			\item $\gcd(649,5959)=59\Longrightarrow$ 59 is a nontrivial factor of 5959.
+		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}{Elliptic Curve Cryptography}

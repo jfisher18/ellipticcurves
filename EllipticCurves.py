@@ -73,7 +73,7 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
     num = 3 * pow(x1, 2) + a
     denom = 2 * y1
     if math.gcd(denom, n) != 1:
-        raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + 'may be a nontrivial factor of n.')
+        raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + ' may be a nontrivial factor of n.')
     else:
         base = num % n
         while math.gcd(base, denom) == 1:
@@ -83,7 +83,7 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
     num = (y1 - y2)
     denom = (x1 - x2)
     if math.gcd(denom, n) != 1:
-      raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + 'may be a nontrivial factor of n.')
+      raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + ' may be a nontrivial factor of n.')
     else:
       while num < 0:
         num += n
@@ -98,6 +98,7 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
         slope = (num / denom) % n
   x3 = (pow(slope, 2) - x1 - x2) % n
   y3 = (-slope * x3 - y1 + slope * x1) % n
+  print(x3, y3)
   return x3, y3
 
 def elliptic_curve_multiplication_finite(x1, y1, m, a, n):
@@ -116,12 +117,13 @@ def elliptic_curve_multiplication_finite(x1, y1, m, a, n):
 def lenstra(n, b):
   m = lcm_list(b)
   print('m:' + str(m))
-  a = random.randint(0, math.ceil(math.sqrt(n)))
+  a = random.randint(0, math.ceil(math.sqrt(n))) % n
   while 4 * pow(a, 3) + 27 == 0:
-    random.randint(0, math.ceil(math.sqrt(n)))
+    random.randint(-math.ceil(math.sqrt(n)), math.ceil(math.sqrt(n))) % n
   print('a:' + str(a))
   elliptic_curve_multiplication_finite(0, 1, m, a, n)
   return 'Fail'
 
-
-lenstra(5959, 20)
+lenstra(5959, 8)
+#elliptic_curve_multiplication_finite(0, 1, 62, 6, 5959)
+#elliptic_curve_addition_finite(0, 1, 649, 2654, 6, 5959)
