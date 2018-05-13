@@ -105,21 +105,21 @@ Therefore, 61 is a factor of 5917.
 
 \indent We will now explore an example of integer factorization with Lenstra's algorithm. Let $N=5959$ and let $B=8$. Therefore, $m=\lcm(1,2,\dotso,8)=840$. We will randomly choose $a=6$, which produces the curve $S$ defined by the equation $y^2 \equiv x^3+6x+1 \mod 5959$, containing the point $P=(0,1)$. We now attempt to compute $840P$. Observe that $60P=(649,2654)$. Therefore $\lambda\equiv\frac{2653}{649} \mod 5959$. Since $649 \not\equiv 0 \mod 5959$, we encounter a contradiction to the group law because any element $P_i \in S$ must have a unique inverse and a slope $\lambda\equiv\frac{2653}{649} \mod 5959$ will produce $\mathcal{O}$. Our conclusion is twofold: first, $(S,+)$ is not a group over $\mathbb{Z}/5959\mathbb{Z}$, and second, $\gcd(649,5959)\neq1$. Since $\gcd(649,5959)=59$ and $1<59<5959$, $59$ is a nontrivial factor of $5959$.
 
-\indent The Diffie-Hellman key exchange protocol can be implemented on the group $(E(\mathbb{Z}/p\mathbb{Z}), +)$ as follows:
+\indent The elliptic-curve Diffie-Hellman key exchange protocol can be implemented on the group $(E(\mathbb{Z}/p\mathbb{Z}), +)$ as follows:
 \begin{enumerate}
 \item Alice and Bob publicly agree on a prime $p$ and an elliptic curve $S$ over $\mathbb{Z}/p\mathbb{Z}$. They then agree on a point $P \in S(\mathbb{Z}/p\mathbb{Z})$.
 \item Alice chooses a private key $m$ and sends Bob $mP$.
 \item Bob chooses a private key $n$ and sends Alice $nP$.
 \item Alice and Bob both compute $mnP$, their shared secret key.
 \end{enumerate}
-It should be noted that Diffie-Hellman is not a full cryptosystem, only a protocol to agree on a shared secret key that can be used for encryption by some other method.
+It should be noted that elliptic-curve Diffie-Hellman is not a full cryptosystem, only a protocol to agree on a shared secret key that can be used for encryption by some other method.
 
-\indent For example, Alice and Bob publicly agree on $p=571$ and the elliptic curve $S$ given by $y^2=x^3-12x+5$. They then agree on $P=(16,324)$. Alice privately computes and sends Bob $39P=(148,387)$. Bob privately computes and sends $121P=(465,556)$. Alice privately computes $39(465,556)=(202,445)$, and Bob privately computes $121(148,387)=(202,445)$.
+\indent For example, Alice and Bob publicly agree on $p=571$ and the elliptic curve $S$ given by $y^2=x^3-12x+5$. They then agree on $P=(16,324)$. Alice privately computes and sends Bob $39P=(148,387)$. Bob privately computes and sends $121P=(465,556)$. Alice privately computes $39(465,556)=(202,445)$, and Bob privately computes $121(148,387)=(202,445)$. The shared secret key is $39(121P)=121(39P)=(202,445)$.
 
 \indent The security of an elliptic curve cryptosystem is dependent on the solution to the elliptic curve discrete logarithm problem. In other words, if $S$ is an elliptic curve over $\mathbb{Z}/p\mathbb{Z}$ and $P \in S(\mathbb{Z}/p\mathbb{Z})$, and given $Q$ a multiple of $P$, we aim to find $n\in\mathbb{Z}$ such that $nP=Q$. The naive approach is to simply check each possible value of $n$ until one arrives at the solution $Q$. However, the naive approach becomes computationally infeasible as $p$ is sufficiently large. Currently, it appears that the discrete logarithm problem on $E(\mathbb{Z}/p\mathbb{Z})$ is more difficult than the discrete logarithm problem on $\mathbb{Z}/p\mathbb{Z}^*$. Therefore, an elliptic curve cryptosystem can offer equivalent security to many cryptosystems currently in use with much smaller numbers, which allows for great gains in efficiency. The smaller numbers involved in an elliptic curve cryptosystem require less memory and are less computationally intensive as compared to many current alternatives.
 
 \indent Discuss Elliptic Curve ElGamal?
 
-\indent Conclusion.
+\indent Elliptic curve cryptography has become much more prevalent in recent years. Presently, Bitcoin uses an elliptic curve digital signature algorithm to verify coin ownership. Additionally, in 2015 the Line Corporation implemented elliptic-curve Diffie-Hellman in its messaging application, Line, in order to apply end-to-end-encryption to all messages. Google also utilizes elliptic curve public keys for encryption and verification. Elliptic curves are crucial cryptographic tools given their mathematical structure and properties.
 
 \end{document}

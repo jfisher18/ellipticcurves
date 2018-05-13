@@ -118,4 +118,29 @@
 			\item Alice privately computes $39(465,556)=(202,445)$, and Bob privately computes $121(148,387)=(202,445)$.
 		\end{itemize}
 	\end{frame}
+	
+	\begin{frame}{Elliptic Curve Discrete Logarithm Problem}
+		\begin{itemize}
+			\item The security of an elliptic-curve cryptosystem is dependent on the solution to the elliptic curve discrete logarithm problem.
+			\item Let $S$ be an elliptic curve over $\mathbb{Z}/p\mathbb{Z}$ and $P \in S(\mathbb{Z}/p\mathbb{Z})$.
+			\item Given $Q$ a multiple of $P$, we aim to find $n\in\mathbb{Z}$ such that $nP=Q$.
+			\item The naive approach is to simply check each possible value of $n$ until one arrives at the solution $Q$. However, the naive approach becomes computationally infeasible as $p$ is sufficiently large.
+			\item Currently, it appears that the discrete logarithm problem on $E(\mathbb{Z}/p\mathbb{Z})$ is more difficult than the discrete logarithm problem on $\mathbb{Z}/p\mathbb{Z}^*$.
+			\item An elliptic curve cryptosystem can offer equivalent security to many cryptosystems currently in use with much smaller numbers, which allows for great gains in efficiency.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Why Should You Care?}
+		\begin{itemize}
+			\item You probably shouldn't.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Applications of Elliptic Curve Cryptography}
+		\begin{itemize}
+			\item Presently, Bitcoin uses an elliptic curve digital signature algorithm to verify coin ownership.
+			\item Google also utilizes elliptic curve public keys for encryption and verification.
+			\newline \includegraphics[scale=.5]{google.png}
+		\end{itemize}
+	\end{frame}
 \end{document}
