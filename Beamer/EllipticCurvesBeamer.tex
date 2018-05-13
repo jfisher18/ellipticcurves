@@ -104,10 +104,18 @@
 	\begin{frame}{Elliptic Curve Cryptography}
 		\begin{itemize}
 			\item The Diffie-Hellman key exchange can be implemented on an Elliptic Curve.
-			\item Alice and Bob publicly agree on a prime $p$ and an elliptic curve $S$ over $\mathbb{Z}/p\mathbb{Z}$. They then agree on a point $P \in S(\mathbb{Z}/p\mathbb{Z})$
+			\item Alice and Bob publicly agree on a prime $p$ and an elliptic curve $S$ over $\mathbb{Z}/p\mathbb{Z}$. They then agree on a point $P \in S(\mathbb{Z}/p\mathbb{Z})$.
 			\item Alice chooses a private key $m$ and sends Bob $mP$.
 			\item Bob chooses a private key $n$ and sends Alice $nP$.
 			\item Alice and Bob both compute $mnP$, their shared secret key.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{A Numerical Example of Diffie-Hellman Key Exchange with Elliptic Curves}
+		\begin{itemize}
+			\item Alice and Bob publicly agree on $p=571$ and the elliptic curve $S$ given by $y^2=x^3-12x+5$. They then agree on $P=(16,324)$.
+			\item Alice privately computes and sends Bob $39P=(148,387)$. Bob privately computes and sends $121P=(465,556)$.
+			\item Alice privately computes $39(465,556)=(202,445)$, and Bob privately computes $121(148,387)=(202,445)$.
 		\end{itemize}
 	\end{frame}
 \end{document}

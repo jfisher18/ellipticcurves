@@ -76,7 +76,7 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
         raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + ' may be a nontrivial factor of n.')
     else:
         base = num % n
-        while math.gcd(base, denom) == 1:
+        while float(int(base / denom)) != base / denom:
             base += n
         slope = (base / denom) % n
   else:
@@ -98,19 +98,18 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
         slope = (num / denom) % n
   x3 = (pow(slope, 2) - x1 - x2) % n
   y3 = (-slope * x3 - y1 + slope * x1) % n
-  print(x3, y3)
   return x3, y3
 
 def elliptic_curve_multiplication_finite(x1, y1, m, a, n):
+  if m == 1:
+    return x1, y1
   if m == 2:
     return elliptic_curve_addition_finite(x1, y1, x1, y1, a, n)
   else:
     next = elliptic_curve_multiplication_finite(x1, y1, m-1, a, n)
     if next[0] == math.nan:
-      print(m-1)
       return x1, y1
     else:
-      print(m - 1)
       return elliptic_curve_addition_finite(next[0], next[1], x1, y1, a, n)
 
 
@@ -124,6 +123,7 @@ def lenstra(n, b):
   elliptic_curve_multiplication_finite(0, 1, m, a, n)
   return 'Fail'
 
-lenstra(5959, 8)
-#elliptic_curve_multiplication_finite(0, 1, 62, 6, 5959)
-#elliptic_curve_addition_finite(0, 1, 649, 2654, 6, 5959)
+def ec_diffie_hellman(a, x0, y0, p, m, n):
+
+
+#lenstra(5959, 8)

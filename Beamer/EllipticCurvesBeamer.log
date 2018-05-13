@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 MAY 2018 16:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 MAY 2018 20:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -910,6 +910,8 @@ Overfull \hbox (17.91937pt too wide) in paragraph at lines 73--73
 
 ] [12
 
+] [13
+
 ]
 \tf@nav=\write6
 \openout6 = `EllipticCurvesBeamer.nav'.
@@ -920,12 +922,12 @@ Overfull \hbox (17.91937pt too wide) in paragraph at lines 73--73
 \tf@snm=\write8
 \openout8 = `EllipticCurvesBeamer.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 113.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 113.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
 
 (./EllipticCurvesBeamer.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 113.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 113.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 121.
 Package rerunfilecheck Info: File `EllipticCurvesBeamer.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -935,8 +937,8 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 16928 strings out of 492995
- 322951 string characters out of 6132704
+ 16930 strings out of 492995
+ 322970 string characters out of 6132704
  396037 words of memory out of 5000000
  20064 multiletter control sequences out of 15000+600000
  15534 words of font info for 57 fonts, out of 8000000 for 9000
@@ -955,10 +957,10 @@ local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on EllipticCurvesBeamer.pdf (12 pages, 216178 bytes).
+Output written on EllipticCurvesBeamer.pdf (13 pages, 218557 bytes).
 PDF statistics:
- 381 PDF objects out of 1000 (max. 8388607)
- 341 compressed objects within 4 object streams
- 25 named destinations out of 1000 (max. 500000)
+ 407 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
+ 27 named destinations out of 1000 (max. 500000)
  58 words of extra memory for PDF output out of 10000 (max. 10000000)
 

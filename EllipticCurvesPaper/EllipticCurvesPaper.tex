@@ -48,7 +48,9 @@ Therefore, we can deduce that
 $$x_3=\lambda^2-x_1-x_2.$$
 From the equation for L, we obtain that
 $$y_3=y_1+(x_3-x_1)\lambda=\lambda x_3+\nu$$
-where $\nu=y_1-\lambda x_1$. In the case that $P_1=P_2$, $\lambda=\frac{3x_1^2+a}{2y_1}$. As such, $L$ will intersect $S$ at two points and the polynomial $(x-x_1)(x-x_2)(x-x_3)=0$ will have a double root. However, the group structure will still be maintained since the above proof does not rely on the precise value of  $\lambda$, only the structure of the equation for $S$. Therefore, $(E(K),+)$ is closed.
+where $\nu=y_1-\lambda x_1$. In the case that $P_1=P_2$, $\lambda=\frac{3x_1^2+a}{2y_1}$. As such, $L$ will intersect $S$ at two points and the polynomial $(x-x_1)(x-x_2)(x-x_3)=0$ will have a double root $x_1=x_2$. However, the group structure will still be maintained since there will still be a unique solution $x_3$, and the above proof does not rely on the precise value of  $\lambda$, only the structure of the equation for $S$. Thus, $(E(K),+)$ is closed.
+
+\indent In some cases, the group represented by an elliptic curve can have a cyclic structure. In the case of the curve $S$ represented by $y^2=x^3+x+1$ over $\mathbb{Z}/5\mathbb{Z}$, the group has order $9$ and the generator element $G \in S(\mathbb{Z}/5\mathbb{Z})$ is the point $(0,1)$.
 
 \indent We return to address the requirement that the discriminant, $\Delta=-16(4a^3+27b^2) \neq 0$. We we wish to show that $\Delta=0$ if and only if an elliptic curve $S$ is singular. A singular curve poses problems for a group structure because at the singular point the derivative is not well defined, which would cause the addition the singular point to itself to not be well defined. For any polynomial $f(x_1,x_2,\dotsc)$ at the singular point $P_0$
 $$\frac{\partial f}{\partial x_1}(P_0)=\frac{\partial f}{\partial x_2}(P_0)=\cdots=0.$$
@@ -101,14 +103,23 @@ Therefore, 61 is a factor of 5917.
 
 \indent The advantage of the Lenstra method is that if the algorithm fails, we may choose a different elliptic curve and repeat the algorithm. In Pollard's $p-1$ we always work with the group $\mathbb{Z}/N\mathbb{Z}^*$, which has order p-1. However, in the Lenstra method we work with many different groups $E(\mathbb{Z}/N\mathbb{Z})$, which will have order $p+1\pm s$, for some nonnegative integer where $s<2\sqrt{p}$ by Hasse's theorem. Therefore, we will have more flexibility since the order of our group is not always fixed to $p-1$.
 
-\indent We will now explore an example of integer factorization with Lenstra's algorithm. Let $N=5917$ and let $B=10$. Therefore,
+\indent We will now explore an example of integer factorization with Lenstra's algorithm. Let $N=5959$ and let $B=8$. Therefore, $m=\lcm(1,2,\dotso,8)=840$. We will randomly choose $a=6$, which produces the curve $S$ defined by the equation $y^2 \equiv x^3+6x+1 \mod 5959$, containing the point $P=(0,1)$. We now attempt to compute $840P$. Observe that $60P=(649,2654)$. Therefore $\lambda\equiv\frac{2653}{649} \mod 5959$. Since $649 \not\equiv 0 \mod 5959$, we encounter a contradiction to the group law because any element $P_i \in S$ must have a unique inverse and a slope $\lambda\equiv\frac{2653}{649} \mod 5959$ will produce $\mathcal{O}$. Our conclusion is twofold: first, $(S,+)$ is not a group over $\mathbb{Z}/5959\mathbb{Z}$, and second, $\gcd(649,5959)\neq1$. Since $\gcd(649,5959)=59$ and $1<59<5959$, $59$ is a nontrivial factor of $5959$.
 
-\indent Discuss Elliptic Curve Diffie-Hellman.
+\indent The Diffie-Hellman key exchange protocol can be implemented on the group $(E(\mathbb{Z}/p\mathbb{Z}), +)$ as follows:
+\begin{enumerate}
+\item Alice and Bob publicly agree on a prime $p$ and an elliptic curve $S$ over $\mathbb{Z}/p\mathbb{Z}$. They then agree on a point $P \in S(\mathbb{Z}/p\mathbb{Z})$.
+\item Alice chooses a private key $m$ and sends Bob $mP$.
+\item Bob chooses a private key $n$ and sends Alice $nP$.
+\item Alice and Bob both compute $mnP$, their shared secret key.
+\end{enumerate}
+It should be noted that Diffie-Hellman is not a full cryptosystem, only a protocol to agree on a shared secret key that can be used for encryption by some other method.
 
-\indent Insert numerical example.
+\indent For example, Alice and Bob publicly agree on $p=571$ and the elliptic curve $S$ given by $y^2=x^3-12x+5$. They then agree on $P=(16,324)$. Alice privately computes and sends Bob $39P=(148,387)$. Bob privately computes and sends $121P=(465,556)$. Alice privately computes $39(465,556)=(202,445)$, and Bob privately computes $121(148,387)=(202,445)$.
+
+\indent The security of an elliptic curve cryptosystem is dependent on the solution to the elliptic curve discrete logarithm problem. In other words, if $S$ is an elliptic curve over $\mathbb{Z}/p\mathbb{Z}$ and $P \in S(\mathbb{Z}/p\mathbb{Z})$, and given $Q$ a multiple of $P$, we aim to find $n\in\mathbb{Z}$ such that $nP=Q$. The naive approach is to simply check each possible value of $n$ until one arrives at the solution $Q$. However, the naive approach becomes computationally infeasible as $p$ is sufficiently large. Currently, it appears that the discrete logarithm problem on $E(\mathbb{Z}/p\mathbb{Z})$ is more difficult than the discrete logarithm problem on $\mathbb{Z}/p\mathbb{Z}^*$. Therefore, an elliptic curve cryptosystem can offer equivalent security to many cryptosystems currently in use with much smaller numbers, which allows for great gains in efficiency. The smaller numbers involved in an elliptic curve cryptosystem require less memory and are less computationally intensive as compared to many current alternatives.
 
 \indent Discuss Elliptic Curve ElGamal?
 
-\indent Discuss Elliptic Curve discrete logarithm.
+\indent Conclusion.
 
 \end{document}
