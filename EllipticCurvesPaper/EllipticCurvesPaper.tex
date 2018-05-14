@@ -118,8 +118,6 @@ It should be noted that elliptic-curve Diffie-Hellman is not a full cryptosystem
 
 \indent The security of an elliptic curve cryptosystem is dependent on the solution to the elliptic curve discrete logarithm problem. In other words, if $S$ is an elliptic curve over $\mathbb{Z}/p\mathbb{Z}$ and $P \in S(\mathbb{Z}/p\mathbb{Z})$, and given $Q$ a multiple of $P$, we aim to find $n\in\mathbb{Z}$ such that $nP=Q$. The naive approach is to simply check each possible value of $n$ until one arrives at the solution $Q$. However, the naive approach becomes computationally infeasible as $p$ is sufficiently large. Currently, it appears that the discrete logarithm problem on $E(\mathbb{Z}/p\mathbb{Z})$ is more difficult than the discrete logarithm problem on $\mathbb{Z}/p\mathbb{Z}^*$. Therefore, an elliptic curve cryptosystem can offer equivalent security to many cryptosystems currently in use with much smaller numbers, which allows for great gains in efficiency. The smaller numbers involved in an elliptic curve cryptosystem require less memory and are less computationally intensive as compared to many current alternatives.
 
-\indent Discuss Elliptic Curve ElGamal?
-
 \indent Elliptic curve cryptography has become much more prevalent in recent years. Presently, Bitcoin uses an elliptic curve digital signature algorithm to verify coin ownership. Additionally, in 2015 the Line Corporation implemented elliptic-curve Diffie-Hellman in its messaging application, Line, in order to apply end-to-end-encryption to all messages. Google also utilizes elliptic curve public keys for encryption and verification. Elliptic curves are crucial cryptographic tools given their mathematical structure and properties.
 
 \end{document}
