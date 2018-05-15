@@ -11,8 +11,7 @@ def gcd(a,b):
   if(r==0):
     return b
   else:
-    print(a,r)
-    return gcd(a,r)
+    return gcd(b,r)
 
 def sieve(n):
   multiples = []
@@ -124,6 +123,5 @@ def lenstra(n, b):
   return 'Fail'
 
 def ec_diffie_hellman(a, x0, y0, p, m, n):
-
-
-#lenstra(5959, 8)
+    pass
+    #lenstra(5959, 8)
