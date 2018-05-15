@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  14 MAY 2018 21:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  14 MAY 2018 21:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -864,12 +864,12 @@ File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 ) [2
 
-] <images/GeometricGroup.png, id=74, 1006.76125pt x 738.76pt>
+] <images/GeometricGroup.png, id=74, 887.315pt x 774.895pt>
 File: images/GeometricGroup.png Graphic file (type png)
 
 <use images/GeometricGroup.png>
 Package pdftex.def Info: images/GeometricGroup.png used on input line 29.
-(pdftex.def)             Requested size: 302.0307pt x 221.6297pt.
+(pdftex.def)             Requested size: 266.19655pt x 232.47029pt.
  [3
 
  <./images/GeometricGroup.png>]
@@ -919,15 +919,15 @@ Overfull \hbox (17.91937pt too wide) in paragraph at lines 73--73
 
 ] [16
 
-] <images/google.png, id=437, 549.05125pt x 174.6525pt>
-File: images/google.png Graphic file (type png)
+] <images/Google.png, id=437, 549.05125pt x 174.6525pt>
+File: images/Google.png Graphic file (type png)
 
-<use images/google.png>
-Package pdftex.def Info: images/google.png used on input line 157.
+<use images/Google.png>
+Package pdftex.def Info: images/Google.png used on input line 157.
 (pdftex.def)             Requested size: 274.52495pt x 87.32603pt.
  [17
 
- <./images/google.png>]
+ <./images/Google.png>]
 \tf@nav=\write6
 \openout6 = `EllipticCurvesBeamer.nav'.
 
@@ -970,7 +970,7 @@ local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on EllipticCurvesBeamer.pdf (17 pages, 260318 bytes).
+Output written on EllipticCurvesBeamer.pdf (17 pages, 262559 bytes).
 PDF statistics:
  511 PDF objects out of 1000 (max. 8388607)
  463 compressed objects within 5 object streams
