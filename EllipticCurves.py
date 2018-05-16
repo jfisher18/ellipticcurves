@@ -34,8 +34,8 @@ def pollard(n,b,attempts):
   m=lcm_list(b)
   a=2
   for j in range(2,2+attempts):
-    x=(pow(a,m)-1)%n
-    d=math.gcd(x,n)
+    x=(pow(j,m)-1)%n
+    d=gcd(x,n)
     if (1<d) and (d<n):
       return d
   return 0
@@ -71,8 +71,8 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
   elif x1 == x2 and y1 == y2:
     num = 3 * pow(x1, 2) + a
     denom = 2 * y1
-    if math.gcd(denom, n) != 1:
-        raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + ' may be a nontrivial factor of n.')
+    if gcd(denom, n) != 1:
+        raise ValueError('The chosen curve is not a group mod n. ' + str(gcd(denom, n)) + ' may be a nontrivial factor of n.')
     else:
         base = num % n
         while float(int(base / denom)) != base / denom:
@@ -81,8 +81,8 @@ def elliptic_curve_addition_finite(x1, y1, x2, y2, a, n):
   else:
     num = (y1 - y2)
     denom = (x1 - x2)
-    if math.gcd(denom, n) != 1:
-      raise ValueError('The chosen curve is not a group mod n. ' + str(math.gcd(denom, n)) + ' may be a nontrivial factor of n.')
+    if gcd(denom, n) != 1:
+      raise ValueError('The chosen curve is not a group mod n. ' + str(gcd(denom, n)) + ' may be a nontrivial factor of n.')
     else:
       while num < 0:
         num += n
@@ -114,14 +114,10 @@ def elliptic_curve_multiplication_finite(x1, y1, m, a, n):
 
 def lenstra(n, b):
   m = lcm_list(b)
-  print('m:' + str(m))
   a = random.randint(0, math.ceil(math.sqrt(n))) % n
   while 4 * pow(a, 3) + 27 == 0:
     random.randint(-math.ceil(math.sqrt(n)), math.ceil(math.sqrt(n))) % n
-  print('a:' + str(a))
   elliptic_curve_multiplication_finite(0, 1, m, a, n)
   return 'Fail'
 
-def ec_diffie_hellman(a, x0, y0, p, m, n):
-    pass
-    #lenstra(5959, 8)
+print(lenstra(5959, 8))

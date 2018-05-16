@@ -48,7 +48,7 @@
 		\begin{itemize}
 			\item We wish to find a nontrivial factor of a large positive integer $N$ using the Pollard p-1 method.
 			\item Let us choose a positive integer $B$. Suppose that there is a prime factor $p$ of $N$ such that $p-1$ is $B$-power smooth.
-			\item Let us choose $a > 1$ such that p does not divide a. Often we will choose $a=2$ for convenience.
+			\item Let us choose $a > 1$ such that a does not divide p. Often we will choose $a=2$ for convenience.
 			\item By Fermat's Little Theorem $a^{p-1} \equiv 1 \mod p$.
 			\item Let $m = \lcm (1,2,3,\dotso,B)$. Since $p-1$ is $B$-power smooth, $p-1 \mid m \Longrightarrow p \mid \gcd (a^m-1,N) > 1$.
 			\item If $\gcd (a^m-1,N) < N$, then $\gcd (a^m-1,N)$ is a nontrivial factor of N.
@@ -76,7 +76,7 @@
 		\begin{itemize}
 			\item Choose $N, B \in \mathbb{Z}^+$.
 			\item Compute $m=\lcm(1,2,\dotso,B)$. 
-			\item Choose a random $a \in \mathbb{Z}/N\mathbb{Z}$ such that $4a^3+27 \in \mathbb{Z}/N\mathbb{Z}^*$. Thus, $P=(0,1)$ is a point on the elliptic curve $y^2=x^3+ax+14$ over $\mathbb{Z}/N\mathbb{Z}$.
+			\item Choose a random $a \in \mathbb{Z}/N\mathbb{Z}$ such that $4a^3+27 \in \mathbb{Z}/N\mathbb{Z}^*$. Thus, $P=(0,1)$ is a point on the elliptic curve $y^2=x^3+ax+1$ over $\mathbb{Z}/N\mathbb{Z}$.
 			\item Attempt to compute $mP$ using the $+$ operation for the group $(E(K),+)$. If at some point we cannot compute a sum of points because $\gcd(x_1-x_2,N) \neq 1$ (where $x_1-x_2$ is the denominator of the slope expression we compute in order to execute the $+$ operation), compute and return $\gcd(x_1-x_2,N)$ if $\gcd(x_1-x_2,N) \neq N$. If some point $kP=\mathcal{O} \for k \leq m$, terminate and output, "Fail." Additionally, if $mP$ can be computed using the $+$ operation, output, "Fail."
 		\end{itemize}
 	\end{frame}

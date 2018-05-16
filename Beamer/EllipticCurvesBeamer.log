@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  14 MAY 2018 21:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  16 MAY 2018 13:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -970,7 +970,7 @@ local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on EllipticCurvesBeamer.pdf (17 pages, 262559 bytes).
+Output written on EllipticCurvesBeamer.pdf (17 pages, 262553 bytes).
 PDF statistics:
  511 PDF objects out of 1000 (max. 8388607)
  463 compressed objects within 5 object streams
